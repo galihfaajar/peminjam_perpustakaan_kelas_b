@@ -70,6 +70,9 @@ class RegisterView extends GetView<RegisterController> {
                   return null;
                 },
               ),
+              SizedBox(
+                height: 10,
+              ),
               Obx(() => controller.loading.value?
               CircularProgressIndicator():
                   ElevatedButton(onPressed: (){

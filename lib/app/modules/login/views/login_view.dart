@@ -12,7 +12,7 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LoginView'),
+        title: const Text('Login'),
         centerTitle: true,
       ),
       body: Center(
@@ -24,8 +24,8 @@ class LoginView extends GetView<LoginController> {
                 controller: controller.usernameController,
                 decoration: InputDecoration(hintText: "Masukkan Username"),
                 validator: (value) {
-                  if (value!.length < 0) {
-                    return "username tidak boleh kosong";
+                  if (value!.isEmpty) {
+                    return "Username tidak boleh kosong";
                   }
                   return null;
                 },
@@ -41,6 +41,9 @@ class LoginView extends GetView<LoginController> {
                   return null;
                 },
               ),
+              SizedBox(
+                height: 10,
+              ),
               Obx(() => controller.loading.value
                   ? CircularProgressIndicator()
                   : ElevatedButton(
@@ -48,6 +51,9 @@ class LoginView extends GetView<LoginController> {
                         controller.login();
                       },
                       child: Text("Login"))),
+              SizedBox(
+                height: 10,
+              ),
               ElevatedButton(onPressed: (){
                 Get.offAllNamed(Routes.REGISTER);
               }, child: Text("Register"))
